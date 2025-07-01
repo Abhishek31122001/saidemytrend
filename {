@@ -1,0 +1,166 @@
+Script started on 2025-07-01 17:56:36+00:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="97" LINES="41"]
+                    echo '<--------------- Jar Publish Started --------------->'
+                    def server = Artifactory.newServer url: registry + "/artifactory", credentialsId: "artifact-cred"
+                    def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
+                    def uploadSpec = """{
+                          "files": [
+                            {
+                              "pattern": "jarstaging/(*)",
+                              "target": "sai-libs-release-local/{1}",
+                              "flat": "false",
+                              "props": "${properties}",
+                              "exclusions": [ "*.sha1", "*.md5"]
+                            }
+                         ]
+                     }"""
+                    def buildInfo = server.upload(uploadSpec)
+                    buildInfo.env.collect()
+                    server.publishBuildInfo(buildInfo)
+                    echo '<--------------- Jar Publish Ended --------------->'
+                }
+            }
+        }
+
+    }
+}]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                     echo '<--------------- Jar Publish Started --------------->'
+[?2004l<--------------- Jar Publish Started --------------->
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                     def server = Artifactory.newServer url: registry + "/artifactory", credentialsId: "artifact-cred"
+[?2004lbash: def: command not found
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
+[?2004lbash: buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}: bad substitution
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                     def uploadSpec = """{
+[?2004l[?2004h>                           "files": [
+[?2004l[?2004h>                             {
+[?2004l[?2004h>                               "pattern": "jarstaging/(*)",
+[?2004lbash: syntax error near unexpected token `('
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                               "target": "sai-libs-release-local/{1}",
+[?2004lbash: target:: command not found
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                               "flat": "false",
+[?2004lbash: flat:: command not found
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                               "props": "${properties}",
+[?2004lbash: props:: command not found
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                               "exclusions": [ "*.sha1", "*.md5"]
+[?2004lbash: exclusions:: command not found
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                             }
+[?2004lbash: syntax error near unexpected token `}'
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                          ]
+[?2004lbash: ]: command not found
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]#                      }"""
+[?2004l[?2004h>                     def buildInfo = server.upload(uploadSpec)
+[?2004l[?2004h>                     buildInfo.env.collect()
+[?2004l[?2004h>                     server.publishBuildInfo(buildInfo)
+[?2004l[?2004h>                     echo '<--------------- Jar Publish Ended --------------->'
+[?2004l[?2004h>                 }
+[?2004l[?2004h>             }
+[?2004l[?2004h>         }
+[?2004l[?2004h> 
+[?2004l[?2004h>     }
+[?2004l[?2004h> }^C[?2004l[?2004h[?2004l
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]# git push origin main
+[?2004lUsername for 'https://github.com': abhishekjainm 0123456789@gma; ol  il.com
+Password for 'https://abhishekjain0123456789%40gmail.com@github.com': 
+Enumerating objects: 5, done.
+Counting objects:  20% (1/5)Counting objects:  40% (2/5)Counting objects:  60% (3/5)Counting objects:  80% (4/5)Counting objects: 100% (5/5)Counting objects: 100% (5/5), done.
+Delta compression using up to 2 threads
+Compressing objects:  33% (1/3)Compressing objects:  66% (2/3)Compressing objects: 100% (3/3)Compressing objects: 100% (3/3), done.
+Writing objects:  33% (1/3)Writing objects:  66% (2/3)Writing objects: 100% (3/3)Writing objects: 100% (3/3), 1.00 KiB | 1.00 MiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Abhishek31122001/saidemytrend.git
+   5ee10a6..3396670  main -> main
+]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]# vi Jenkinsfile 
+[?2004l[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;41r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[41;1H"Jenkinsfile" 67L, 2153B[2;1H▽[6n[2;1H  [3;1HPzz\[0%m[6n[3;1H           [1;1H[>c]10;?]11;?[1;1H[34m// Define the URL of the Artifactory registry[m
+[35mdef[m registry = [31m'https://trialp4bu3w.jfrog.io/'[m[2;47H[K[3;1H[K[4;1Hpipeline {
+    agent [36many[m[7;5Henvironment {[8;9HPATH = [31m"/opt/maven/bin:[m[36m$PATH[m[31m"[m
+    }[11;5Hstages {[13;9Hstage([31m"build"[m) {[14;13Hsteps {[15;17Hecho [31m"----------- build started ----------"[m[16;17Hsh [31m'mvn clean deploy -Dmaven.test.skip=true'[m[17;17Hecho [31m"----------- build completed ----------"[m[18;13H}[19;9H}[21;9Hstage([31m"test"[m) {[22;13Hsteps {[23;17Hecho [31m"----------- unit test started ----------"[m[24;17Hsh [31m'mvn surefire-report:report'[m[25;17Hecho [31m"----------- unit test completed ----------"[m[26;13H}[27;9H}[29;9Hstage([31m'SonarQube analysis'[m) {[30;13Henvironment {[31;17HscannerHome = tool [31m'saidemy-sonar-scanner'[m[32;13H}[34;13Hsteps {[35;17HwithSonarQubeEnv([31m'saidemy-sonarqube-server'[m) {[36;21Hsh [31m"[m[36m${scannerHome}[m[31m/bin/sonar-scanner"[m[37;17H}[38;13H}[39;9H}[41;80H35,16[9CTop[35;16H[?25h[?4m[27m[23m[29m[m[H[2J[?25l[1;1H[1m[31mdef[m registry = [1m[35m'https://trialp4bu3w.jfrog.io/'[m
+
+pipeline {
+    agent [1m[36many[m[6;5Henvironment {[7;9HPATH = [1m[35m"/opt/maven/bin:[m[1m[36m$PATH[m[1m[35m"[m
+    }[10;5Hstages {[12;9Hstage([1m[35m"build"[m) {[13;13Hsteps {[14;17Hecho [1m[35m"----------- build started ----------"[m[15;17Hsh [1m[35m'mvn clean deploy -Dmaven.test.skip=true'[m[16;17Hecho [1m[35m"----------- build completed ----------"[m[17;13H}[18;9H}[20;9Hstage([1m[35m"test"[m) {[21;13Hsteps {[22;17Hecho [1m[35m"----------- unit test started ----------"[m[23;17Hsh [1m[35m'mvn surefire-report:report'[m[24;17Hecho [1m[35m"----------- unit test completed ----------"[m[25;13H}[26;9H}[28;9Hstage([1m[35m'SonarQube analysis'[m) {[29;13Henvironment {[30;17HscannerHome = tool [1m[35m'saidemy-sonar-scanner'[m[31;13H}[33;13Hsteps {[34;17HwithSonarQubeEnv([1m[35m'saidemy-sonarqube-server'[m) {[35;21Hsh [1m[35m"[m[1m[36m${scannerHome}[m[1m[35m/bin/sonar-scanner"[m[36;17H}[37;13H}[38;9H}[40;9Hstage([1m[35m"Jar Publish"[m) {[41;80H36,16[10C3%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;13Hsteps {[41;80H[K[41;80H37,16[10C7%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;13H[1;40r[40;1H
+[1;41r[31;19H[46m{[35;13H}[m[40;17Hscript {[41;80H[K[41;80H38,13[9C11%[35;13H[?25h[?25l[1;40r[40;1H
+[1;41r[25;37H[46m{[m[30;19H{[34;13H}[35;9H[46m}[m[40;21Hecho [1m[35m'<--------------- Jar Publish Started --------------->'[m[41;80H[K[41;80H39,9[10C14%[35;9H[?25h[?25l[1;40r[1;1H[2M[1;41r[23;37H{[33;9H}[39;21H[1m[31mdef[m server = Artifactory.newServer url: registry + [1m[35m"/artifactory"[m, credentiall[40;1HsId: [1m[35m"jfrog"[m[41;80H[K[41;80H40,0-1[8C21%[34;1H[?25h[?25l[41;70H~@k[34;1H[41;70H   [35;16H[41;81H1,16 [35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21H[1m[31mdef[m properties = [1m[35m"buildid=[m[1m[36m${env.BUILD_ID}[m[1m[35m,commitid=[m[1m[36m${GIT_COMMIT}[m[1m[35m"[m[41;80H[K[41;80H42,16[9C25%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21H[1m[31mdef[m uploadSpec = [1m[35m"""{[m[41;80H[K[41;80H43,16[9C28%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H[1m[35m                          "files": [[m[41;80H[K[41;80H44,16[9C32%[35;16H[?25h[?25l[1;40r[1;1H[2M[1;41r[39;1H[1m[35m                            {
+                              "pattern": "jarstaging/(*)",[m[41;80H[K[41;80H45,16[9C39%[34;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "target": "abhi-libs-release-local/{1}",[m[41;80H[K[41;80H46,16[9C42%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "flat": "false",[m[41;80H[K[41;80H47,16[9C46%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "props": "[m[1m[36m${properties}[m[1m[35m",[m[41;80H[K[41;80H48,16[9C50%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "exclusions": [ "*.sha1", "*.md5"][m[41;80H[K[41;80H49,16[9C53%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H[1m[35m                            }[m[41;80H[K[41;80H50,16[9C57%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                         ][m[41;80H[K[41;80H51,16[9C60%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                     }"""[m[41;80H[K[41;80H52,16[9C64%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;21H[1m[31mdef[m buildInfo = server.upload(uploadSpec)[41;80H[K[41;80H53,16[9C67%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21HbuildInfo.env.[1m[36mcollect[m()[41;80H[K[41;80H54,16[9C71%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21Hserver.publishBuildInfo(buildInfo)[41;80H[K[41;80H55,16[9C75%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;21Hecho [1m[35m'<--------------- Jar Publish Ended --------------->'[m[41;80H[K[41;80H56,16[9C78%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;17H}[41;80H[K[41;80H57,16[9C82%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;13H}[41;80H[K[41;80H58,16[9C85%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;9H}[41;80H[K[41;80H59,16[9C89%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[41;80H[K[41;80H60,16[9C92%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;5H}[41;80H[K[41;80H61,16[9C96%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H}[41;80H[K[41;80H62,16[9CBot[35;16H[?25h[?25l[41;81H1[34;16H[?25h[?25l[41;81H0[33;16H[?25h[?25l[41;70H~@k[33;16H[41;70H   [32;16H[41;80H59[32;16H[?25h[?25l[41;81H8[31;16H[?25h[?25l[41;81H7[30;16H[?25h[?25l[41;70H~@k[30;16H[41;70H   [29;16H[41;81H6[29;16H[?25h[?25l[41;81H5[28;16H[?25h[?25l[41;81H4[27;16H[?25h[?25l[41;70H~@k[27;16H[41;70H   [26;16H[41;81H3[26;16H[?25h[27m[23m[29m[m[H[2J[?25l[1;9Hstage([1m[35m'SonarQube analysis'[m) {[2;13Henvironment {[3;17HscannerHome = tool [1m[35m'saidemy-sonar-scanner'[m[4;13H}[6;13Hsteps {[7;17HwithSonarQubeEnv([1m[35m'saidemy-sonarqube-server'[m) {[8;21Hsh [1m[35m"[m[1m[36m${scannerHome}[m[1m[35m/bin/sonar-scanner"[m[9;17H}[10;13H}[11;9H}[13;9Hstage([1m[35m"Jar Publish"[m) {[14;13Hsteps {[15;17Hscript {[16;21Hecho [1m[35m'<--------------- Jar Publish Started --------------->'[m[17;21H[1m[31mdef[m server = Artifactory.newServer url: registry + [1m[35m"/artifactory"[m, credentialsII[18;1Hd: [1m[35m"jfrog"[m[19;21H[1m[31mdef[m properties = [1m[35m"buildid=[m[1m[36m${env.BUILD_ID}[m[1m[35m,commitid=[m[1m[36m${GIT_COMMIT}[m[1m[35m"[m[20;21H[1m[31mdef[m uploadSpec = [1m[35m"""{
+                          "files": [
+                            {
+                              "pattern": "jarstaging/(*)",
+                              "target": "abhi-libs-release-local/{1}",
+                              "flat": "false",
+                              "props": "[m[1m[36m${properties}[m[1m[35m",
+                              "exclusions": [ "*.sha1", "*.md5"]
+                            }
+                         ]
+                     }"""[m[31;21H[1m[31mdef[m buildInfo = server.upload(uploadSpec)[32;21HbuildInfo.env.[1m[36mcollect[m()[33;21Hserver.publishBuildInfo(buildInfo)[34;21Hecho [1m[35m'<--------------- Jar Publish Ended --------------->'[m[35;17H}[36;13H}[37;9H}[39;5H}
+}[41;82H53,16[9CBot[26;16H[?25h[27m[23m[29m[m[H[2J[?25l[1;9Hstage([1m[35m'SonarQube analysis'[m) {[2;13Henvironment {[3;17HscannerHome = tool [1m[35m'saidemy-sonar-scanner'[m[4;13H}[6;13Hsteps {[7;17HwithSonarQubeEnv([1m[35m'saidemy-sonarqube-server'[m) {[8;21Hsh [1m[35m"[m[1m[36m${scannerHome}[m[1m[35m/bin/sonar-scanner"[m[9;17H}[10;13H}[11;9H}[13;9Hstage([1m[35m"Jar Publish"[m) {[14;13Hsteps {[15;17Hscript {[16;21Hecho [1m[35m'<--------------- Jar Publish Started --------------->'[m[17;21H[1m[31mdef[m server = Artifactory.newServer url: registry + [1m[35m"/artifactory"[m, credentiall[18;1HsId: [1m[35m"jfrog"[m[19;21H[1m[31mdef[m properties = [1m[35m"buildid=[m[1m[36m${env.BUILD_ID}[m[1m[35m,commitid=[m[1m[36m${GIT_COMMIT}[m[1m[35m"[m[20;21H[1m[31mdef[m uploadSpec = [1m[35m"""{
+                          "files": [
+                            {
+                              "pattern": "jarstaging/(*)",
+                              "target": "abhi-libs-release-local/{1}",
+                              "flat": "false",
+                              "props": "[m[1m[36m${properties}[m[1m[35m",
+                              "exclusions": [ "*.sha1", "*.md5"]
+                            }
+                         ]
+                     }"""[m[31;21H[1m[31mdef[m buildInfo = server.upload(uploadSpec)[32;21HbuildInfo.env.[1m[36mcollect[m()[33;21Hserver.publishBuildInfo(buildInfo)[34;21Hecho [1m[35m'<--------------- Jar Publish Ended --------------->'[m[35;17H}[36;13H}[37;9H}[39;5H}
+}[41;80H53,16[9CBot[26;16H[?25h[?25l[41;81H2[25;16H[?25h[?25l[41;81H1[24;16H[?25h[?25l[41;70H~@k[24;16H[41;70H   [23;16H[41;81H0[23;16H[?25h[?25l[41;80H49[22;16H[?25h[?25l[41;81H8[21;16H[?25h[?25l[41;70H~@k[21;16H[41;70H   [20;16H[41;81H7[20;16H[?25h[?25l[41;81H6[19;16H[?25h[?25l[41;81H5[17;16H[?25h[?25l[41;70H~@k[17;16H[41;70H   [16;16H[41;81H4[16;16H[?25h[?25l[41;81H3[15;16H[?25h[?25l[41;81H2[14;16H[?25h[?25l[41;70H~@k[14;16H[41;70H   [13;16H[41;81H1[13;16H[?25h[?25l[41;81H0,0-1[12;1H[?25h[?25l[1;37H[46m{[11;9H}[m[41;80H39,9  [11;9H[?25h[?25l[41;70H~@k[11;9H[41;70H   [10;13H[1;37H{[6;19H[46m{[10;13H}[m[11;9H}[41;81H8,13[10;13H[?25h[?25l[6;19H{[10;13H}[41;81H7,16[9;16H[?25h[?25l[41;81H6[8;16H[?25h[?25l[41;70H~@k[8;16H[41;70H   [7;16H[41;81H5[7;16H[?25h[?25l[41;81H4[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[41;80H[K[41;80H33,0-1[8C96%[6;1H[?25h[?25l[41;70H~@k[6;1H[41;70H   [6;13H[1;40r[1;1H[L[1;41r[1;9H}[4;25H[46m{[6;13H}[m[41;80H[K[41;80H32,13[9C92%[6;13H[?25h[?25l[1;40r[1;1H[L[1;41r[1;13H}[5;25H{[7;13H}[41;80H[K[41;80H31,16[9C89%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;17Hecho [1m[35m"----------- unit test completed ----------"[m[41;80H[K[41;80H30,16[9C85%[6;16H[?25h[?25l[41;70H~@k[6;16H[41;70H   [6;16H[1;40r[1;1H[L[1;41r[1;17Hsh [1m[35m'mvn surefire-report:report'[m[41;80H[K[41;80H29,16[9C82%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;17Hecho [1m[35m"----------- unit test started ----------"[m[41;80H[K[41;80H28,0-1[8C78%[6;1H[?25h[?25l[1;40r[1;1H[L[1;41r[1;13Hsteps {[41;80H[K[41;80H27,9[10C75%[6;9H[?25h[?25l[41;70H~@k[6;9H[41;70H   [6;13H[1;40r[1;1H[L[1;41r[1;9Hstage([1m[35m"test"[m) {[2;19H[46m{[6;13H}[m[41;80H[K[41;80H26,13[9C71%[6;13H[?25h[?25l[1;40r[1;1H[L[1;41r[3;19H{[7;13H}[41;80H[K[41;80H25,16[9C67%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;9H}[41;80H[K[41;80H24,16[9C64%[6;16H[?25h[?25l[41;70H~@k[6;16H[41;70H   [6;16H[1;40r[1;1H[L[1;41r[1;13H}[41;80H[K[41;80H23,16[9C60%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;17Hecho [1m[35m"----------- build completed ----------"[m[41;80H[K[41;80H22,16[9C57%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;17Hsh [1m[35m'mvn clean deploy -Dmaven.test.skip=true'[m[41;80H[K[41;80H21,16[9C53%[6;16H[?25h[?25l[41;70H~@k[6;16H[41;70H   [6;1H[1;40r[1;1H[L[1;41r[1;17Hecho [1m[35m"----------- build started ----------"[m[41;80H[K[41;80H20,0-1[8C50%[6;1H[?25h[?25l[1;40r[1;1H[L[1;41r[1;13Hsteps {[41;80H[K[41;80H19,9[10C46%[6;9H[?25h[?25l[1;40r[1;1H[L[1;41r[1;9Hstage([1m[35m"build"[m) {[2;19H[46m{[6;13H}[m[41;80H[K[41;80H18,13[9C42%[6;13H[?25h[?25l[41;70H~@k[6;13H[41;70H   [6;16H[1;40r[1;1H[L[1;41r[3;19H{[7;13H}[41;80H[K[41;80H17,16[9C39%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;5Hstages {[41;80H[K[41;80H16,16[9C35%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[41;80H[K[41;80H15,16[9C32%[6;16H[?25h[?25l[41;70H~@k[6;16H[41;70H   [6;16H[1;40r[1;1H[L[1;41r[1;5H}[41;80H[K[41;80H14,16[9C28%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;9HPATH = [1m[35m"/opt/maven/bin:[m[1m[36m$PATH[m[1m[35m"[m[41;80H[K[41;80H13,16[9C25%[6;16H[?25h[?25l[1;40r[1;1H[L[1;41r[1;5Henvironment {[41;80H[K[41;80H12,0-1[8C21%[6;1H[?25h[?25l[41;70H~@k[6;1H[41;70H   [6;12H[1;40r[1;1H[L[1;41r[40;1H[1m[34m@@@                                                                                              [m[41;80H[K[41;80H11,12[9C17%[6;12H[?25h[?25l[1;40r[1;1H[L[1;41r[1;5Hagent [1m[36many[m[41;80H[K[41;80H10,0-1[8C14%[6;1H[?25h[?25l[1;40r[1;1H[L[1;41r[1;1Hpipeline {[4;17H[46m{[6;5H}[m[41;80H[K[41;80H9,5[11C11%[6;5H[?25h[?25l[41;70H~@k[6;5H[41;70H   [6;16H[1;40r[1;1H[L[1;41r[5;17H{[7;5H}[41;80H[K[41;80H8,16[11C7%[6;16H[?25h[?25l[5;17H[46m{[7;5H}[m[41;80H9,5 [7;5H[?25h[?25l[5;17H{[7;5H}[41;80H10,0-1[8;1H[?25h[?25l[41;70H~@k[8;1H[41;70H   [9;12H[41;81H1,12 [9;12H[?25h[?25l[41;81H2,0-1[10;1H[?25h[?25l[41;81H3,16 [11;16H[?25h[?25l[41;70H~@k[11;16H[41;70H   [12;16H[41;81H4[12;16H[?25h[?25l[41;81H5[13;16H[?25h[?25l[41;81H6[14;16H[?25h[?25l[41;70H~@k[14;16H[41;70H   [15;16H[41;81H7[15;16H[?25h[?25l[12;19H[46m{[16;13H}[m[41;81H8,13[16;13H[?25h[?25l[11;24H[46m{[m[12;19H{[16;13H}[17;9H[46m}[m[41;81H9,9 [17;9H[?25h[?25l[41;70H~@k[17;9H[41;70H   [18;1H[11;24H{[17;9H}[41;80H20,0-1[18;1H[?25h[?25l[41;81H1,16 [19;16H[?25h[?25l[41;81H2[20;16H[?25h[?25l[41;70H~@k[20;16H[41;70H   [21;16H[41;81H3[21;16H[?25h[?25l[41;81H4[22;16H[?25h[?25l[41;81H5[23;16H[?25h[?25l[41;70H~@k[23;16H[41;70H   [24;13H[20;19H[46m{[24;13H}[m[41;81H6,13[24;13H[?25h[?25l[19;23H[46m{[m[20;19H{[24;13H}[25;9H[46m}[m[41;81H7,9 [25;9H[?25h[?25l[19;23H{[25;9H}[41;81H8,0-1[26;1H[?25h[?25l[41;70H~@k[26;1H[41;70H   [27;16H[41;81H9,16 [27;16H[?25h[?25l[41;80H30[28;16H[?25h[?25l[41;81H1[29;16H[?25h[?25l[41;70H~@k[29;16H[41;70H   [30;13H[28;25H[46m{[30;13H}[m[41;81H2,13[30;13H[?25h[?25l[28;25H{[30;13H}[41;81H3,0-1[31;1H[?25h[?25l[41;81H4,16 [32;16H[?25h[?25l[41;70H~@k[32;16H[41;70H   [33;16H[41;81H5[33;16H[?25h[?25l[41;81H6[34;16H[?25h[?25l[41;81H7[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;13H[1;40r[40;1H
+[1;41r[31;19H[46m{[35;13H}[m[40;17Hscript {[41;80H[K[41;80H38,13[9C11%[35;13H[?25h[?25l[1;40r[40;1H
+[1;41r[25;37H[46m{[m[30;19H{[34;13H}[35;9H[46m}[m[40;21Hecho [1m[35m'<--------------- Jar Publish Started --------------->'[m[41;80H[K[41;80H39,9[10C14%[35;9H[?25h[?25l[1;40r[1;1H[2M[1;41r[23;37H{[33;9H}[39;21H[1m[31mdef[m server = Artifactory.newServer url: registry + [1m[35m"/artifactory"[m, credentiall[40;1HsId: [1m[35m"jfrog"[m[41;80H[K[41;80H40,0-1[8C21%[34;1H[?25h[?25l[41;70H~@k[34;1H[41;70H   [35;16H[41;81H1,16 [35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21H[1m[31mdef[m properties = [1m[35m"buildid=[m[1m[36m${env.BUILD_ID}[m[1m[35m,commitid=[m[1m[36m${GIT_COMMIT}[m[1m[35m"[m[41;80H[K[41;80H42,16[9C25%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21H[1m[31mdef[m uploadSpec = [1m[35m"""{[m[41;80H[K[41;80H43,16[9C28%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H[1m[35m                          "files": [[m[41;80H[K[41;80H44,16[9C32%[35;16H[?25h[?25l[1;40r[1;1H[2M[1;41r[39;1H[1m[35m                            {
+                              "pattern": "jarstaging/(*)",[m[41;80H[K[41;80H45,16[9C39%[34;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "target": "abhi-libs-release-local/{1}",[m[41;80H[K[41;80H46,16[9C42%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "flat": "false",[m[41;80H[K[41;80H47,16[9C46%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "props": "[m[1m[36m${properties}[m[1m[35m",[m[41;80H[K[41;80H48,16[9C50%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                              "exclusions": [ "*.sha1", "*.md5"][m[41;80H[K[41;80H49,16[9C53%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H[1m[35m                            }[m[41;80H[K[41;80H50,16[9C57%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                         ][m[41;80H[K[41;80H51,16[9C60%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;1H[1m[35m                     }"""[m[41;80H[K[41;80H52,16[9C64%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;21H[1m[31mdef[m buildInfo = server.upload(uploadSpec)[41;80H[K[41;80H53,16[9C67%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21HbuildInfo.env.[1m[36mcollect[m()[41;80H[K[41;80H54,16[9C71%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;21Hserver.publishBuildInfo(buildInfo)[41;80H[K[41;80H55,16[9C75%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;21Hecho [1m[35m'<--------------- Jar Publish Ended --------------->'[m[41;80H[K[41;80H56,16[9C78%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;17H}[41;80H[K[41;80H57,16[9C82%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;13H}[41;80H[K[41;80H58,16[9C85%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;9H}[41;80H[K[41;80H59,16[9C89%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[41;80H[K[41;80H60,16[9C92%[35;16H[?25h[?25l[1;40r[40;1H
+[1;41r[40;5H}[41;80H[K[41;80H61,16[9C96%[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [35;16H[1;40r[40;1H
+[1;41r[40;1H}[41;80H[K[41;80H62,16[9CBot[35;16H[?25h[?25l[14;19H[46m{[36;13H}[m[41;81H3,13[36;13H[?25h[?25l[13;30H[46m{[m[14;19H{[36;13H}[37;9H[46m}[m[41;81H4,9 [37;9H[?25h[?25l[41;70H~@k[37;9H[41;70H   [38;1H[13;30H{[37;9H}[41;81H5,0-1[38;1H[?25h[?25l[41;81H6,5  [39;5H[?25h[?25l[41;81H7,1[40;1H[?25h[?25l[41;70H~@k[40;1H[41;70H   [40;1H[?25h[?25l[41;70H~@k[40;1H[41;70H   [40;1H[?25h[?25l[41;81H6,5[39;5H[?25h[?25l[41;81H5,0-1[38;1H[?25h[?25l[41;70H~@k[38;1H[41;70H   [37;9H[13;30H[46m{[37;9H}[m[41;81H4,9  [37;9H[?25h[?25l[13;30H{[37;9H}[41;81H5,0-1[38;1H[?25h[?25l[41;81H6,5  [39;5H[?25h[?25l[41;70H~@k[39;5H[41;70H   [40;1H[41;81H7,1[40;1H[?25h[?25l[41;81H6,5[39;5H[?25h[?25l[41;81H5,0-1[38;1H[?25h[?25l[41;70H~@k[38;1H[41;70H   [37;9H[13;30H[46m{[37;9H}[m[41;81H4,9  [37;9H[?25h[?25l[13;30H{[37;9H}[41;81H5,0-1[38;1H[?25h[?25l[41;81H6,5  [39;5H[?25h[?25l[41;70H~@k[39;5H[41;70H   [40;1H[41;81H7,1[40;1H[?25h[?25l[41;81H6,5[39;5H[?25h[?25l[41;81H5,0-1[38;1H[?25h[?25l[41;70H~@k[38;1H[41;70H   [37;9H[13;30H[46m{[37;9H}[m[41;81H4,9  [37;9H[?25h[?25l[13;30H{[14;19H[46m{[36;13H}[m[37;9H}[41;81H3,13[36;13H[?25h[?25l[14;19H{[36;13H}[41;81H2,16[35;16H[?25h[?25l[41;70H~@k[35;16H[41;70H   [34;16H[41;81H1[34;16H[?25h[?25l[41;81H0[33;16H[?25h[?25l[41;80H59[32;16H[?25h[?25l[41;70H~@k[32;16H[41;70H   [31;16H[41;81H8[31;16H[?25h[?25l[41;81H7[30;16H[?25h[?25l[41;81H6[29;16H[?25h[?25l[41;70H~@k[29;16H[41;70H   [28;16H[41;81H5[28;16H[?25h[?25l[41;70Hi[28;16H[41;70H [28;16H[41;1H[1m-- INSERT --[m[41;80H[K[41;80H55,16[9CBot[28;16H[?25h[?25l[41;81H4[27;16H[?25h[?25l[41;81H3[26;16H[?25h[?25l[41;81H2[25;16H[?25h[?25l[41;84H7[25;17H[?25h[?25l[41;84H8[25;18H[?25h[?25l[41;84H9[25;19H[?25h[?25l[41;83H20[25;20H[?25h[?25l[41;84H1[25;21H[?25h[?25l[41;84H2[25;22H[?25h[?25l[41;84H3[25;23H[?25h[?25l[41;84H4[25;24H[?25h[?25l[41;84H5[25;25H[?25h[?25l[41;84H6[25;26H[?25h[?25l[41;84H7[25;27H[?25h[?25l[41;84H8[25;28H[?25h[?25l[41;84H9[25;29H[?25h[?25l[41;83H30[25;30H[?25h[?25l[41;84H1[25;31H[?25h[?25l[41;84H2[25;32H[?25h[?25l[41;84H3[25;33H[?25h[?25l[41;81H1[24;33H[?25h[?25l[41;84H4[24;34H[?25h[?25l[41;84H5[24;35H[?25h[?25l[41;84H6[24;36H[?25h[?25l[41;84H7[24;37H[?25h[?25l[41;84H8[24;38H[?25h[?25l[41;84H9[24;39H[?25h[?25l[41;83H40[24;40H[?25h[?25l[41;84H1[24;41H[?25h[?25l[41;84H2[24;42H[?25h[?25l[41;84H3[24;43H[?25h[?25l[41;84H4[24;44H[?25h[?25l[41;84H5[24;45H[?25h[?25l[41;84H6[24;46H[?25h[?25l[1m[35m-libs-release-local/{1}",[m[24;70H[K[41;84H5[24;45H[?25h[?25l[1m[35m-libs-release-local/{1}",[m[24;69H[K[41;84H4[24;44H[?25h[?25l[1m[35m-libs-release-local/{1}",[m[24;68H[K[41;84H3[24;43H[?25h[?25l[1m[35m-libs-release-local/{1}",[m[24;67H[K[41;84H2[24;42H[?25h[?25l[1m[35mi-libs-release-local/{1}",[m[41;84H3[24;43H[?25h[?25l[1m[35ms-libs-release-local/{1}",[m[41;84H4[24;44H[?25h[?25l[1m[35mh-libs-release-local/{1}",[m[41;84H5[24;45H[?25h[?25l[1m[35ma-libs-release-local/{1}",[m[41;84H6[24;46H[?25h[?25l[1m[35m:-libs-release-local/{1}",[m[41;84H7[24;47H[?25h[41;1H[K[24;46H[?25l[41;70H^[[24;46H[41;70H  [24;47H[41;80H51,46[9CBot[24;46H[?25h[?25l[41;70H:[24;46H[41;70H[K[41;1H:[?25hwq[?25l[?2004l[>4;m"Jenkinsfile" 67L, 2154B written[23;2t[23;1t
+[?1004l[?2004l[?1l>[?1049l[23;0;0t[?25h[>4;m]0;root@ip-172-31-34-88:~/saidemytrend[?2004h[root@ip-172-31-34-88 saidemytrend]# vi Jenkinsfile git push origin main                     }"""
+                    def buildInfo = server.upload(uploadSpec)
+                    buildInfo.env.collect()
+                    server.publishBuildInfo(buildInfo)
+                    echo '<--------------- Jar Publish Ended --------------->'
+                }
+            }
+        }
+
+    }[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C    ]
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C   }  "exclusions": [ "*.sha1", "*.md5"][A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[
